@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# JetBrains / VSCode
+.idea/
+.vscode/
+
+# Local database tool files
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets
+.env
+*.pem
+*.key

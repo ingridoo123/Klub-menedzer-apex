@@ -1,0 +1,202 @@
+-- ============================================================================
+-- SKRYPT CZYSZCZĄCY - USUWA WSZYSTKIE OBIEKTY
+-- ============================================================================
+-- UWAGA: Ten skrypt usuwa WSZYSTKIE dane i struktury!
+-- Używaj tylko gdy chcesz zacząć od nowa.
+-- ============================================================================
+
+SET SERVEROUTPUT ON;
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Rozpoczynam czyszczenie bazy danych...');
+    DBMS_OUTPUT.PUT_LINE('');
+END;
+/
+
+-- ============================================================================
+-- 1. USUWANIE TABEL (CASCADE CONSTRAINTS usuwa też FK)
+-- ============================================================================
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE OBSADA_TRENERSKA_MECZU CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto OBSADA_TRENERSKA_MECZU');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE STATYSTYKA_MECZOWA CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto STATYSTYKA_MECZOWA');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE STATYSTYKA CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto STATYSTYKA');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE TRANSFER CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto TRANSFER');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE MECZ CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto MECZ');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE TRENER CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto TRENER');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ZAWODNIK CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto ZAWODNIK');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE DRUZYNA CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto DRUZYNA');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE ROZGRYWKI CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto ROZGRYWKI');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE OBIEKT CASCADE CONSTRAINTS';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto OBIEKT');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN RAISE; END IF;
+END;
+/
+
+-- ============================================================================
+-- 2. USUWANIE SEKWENCJI
+-- ============================================================================
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_ZAWODNIK';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_ZAWODNIK');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_DRUZYNA';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_DRUZYNA');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_TRENER';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_TRENER');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_TRANSFER';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_TRANSFER');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_MECZ';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_MECZ');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_OBIEKT';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_OBIEKT');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE SEQ_ROZGRYWKI';
+    DBMS_OUTPUT.PUT_LINE('✓ Usunięto SEQ_ROZGRYWKI');
+EXCEPTION WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN RAISE; END IF;
+END;
+/
+
+-- ============================================================================
+-- 3. USUWANIE PROCEDUR
+-- ============================================================================
+
+-- BEGIN
+--     EXECUTE IMMEDIATE 'DROP PROCEDURE AKTUALIZUJ_STATYSTYKI_ZAWODNIKA';
+--     DBMS_OUTPUT.PUT_LINE('✓ Usunięto AKTUALIZUJ_STATYSTYKI_ZAWODNIKA');
+-- EXCEPTION WHEN OTHERS THEN
+--     IF SQLCODE != -4043 THEN RAISE; END IF;
+-- END;
+/
+
+-- -- ============================================================================
+-- -- 4. USUWANIE FUNKCJI
+-- -- ============================================================================
+
+-- BEGIN
+--     EXECUTE IMMEDIATE 'DROP FUNCTION OBLICZ_SREDNIA_OCENE_ZAWODNIKA';
+--     DBMS_OUTPUT.PUT_LINE('✓ Usunięto OBLICZ_SREDNIA_OCENE_ZAWODNIKA');
+-- EXCEPTION WHEN OTHERS THEN
+--     IF SQLCODE != -4043 THEN RAISE; END IF;
+-- END;
+-- /
+
+-- BEGIN
+--     EXECUTE IMMEDIATE 'DROP FUNCTION OBLICZ_WARTOSC_KADRY';
+--     DBMS_OUTPUT.PUT_LINE('✓ Usunięto OBLICZ_WARTOSC_KADRY');
+-- EXCEPTION WHEN OTHERS THEN
+--     IF SQLCODE != -4043 THEN RAISE; END IF;
+-- END;
+/
+
+-- ============================================================================
+-- PODSUMOWANIE
+-- ============================================================================
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('============================================================================');
+    DBMS_OUTPUT.PUT_LINE('✓ BAZA DANYCH WYCZYSZCZONA!');
+    DBMS_OUTPUT.PUT_LINE('============================================================================');
+END;
+/
